@@ -5,99 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Myanmar 2D Live</title>
     <style>
-        :root { 
-            --primary: #ff4757; 
-            --accent: #7d5fff;
-            --text-light: #ffffff; 
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Pyidaungsu:wght@400;700&display=swap');
+        :root { --primary: #6366f1; --accent: #a855f7; --bg: #0f172a; }
+        body { font-family: 'Pyidaungsu', sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 15px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { max-width: 500px; width: 100%; background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(20px); padding: 25px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
         
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-            color: var(--text-light); 
-            margin: 0; 
-            padding: 20px; 
-            min-height: 100vh;
-            display: flex; 
-            justify-content: center; 
-            align-items: center;
-        }
+        .live-frame-wrapper { width: 100%; height: 400px; border-radius: 20px; overflow: hidden; margin-bottom: 20px; background: #000; border: 2px solid var(--primary); }
+        .live-frame-wrapper iframe { width: 100%; height: 100%; border: none; }
         
-        .container { 
-            max-width: 500px; 
-            width: 100%; 
-            background: rgba(255, 255, 255, 0.08); 
-            backdrop-filter: blur(15px);
-            padding: 25px; 
-            border-radius: 25px; 
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            /* ဒီနေရာမှာ box-sizing ထည့်ပေးထားပါတယ် */
-            box-sizing: border-box; 
-        }
+        .info-frame { width: 100%; height: 200px; padding: 20px; background: rgba(255, 255, 255, 0.05); color: #e2e8f0; font-size: 15px; box-sizing: border-box; overflow-y: auto; border-radius: 20px; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.1); }
         
-        h1 { 
-            text-align: center; 
-            font-size: 1.6rem; 
-            margin-bottom: 20px; 
-            color: #fff; 
-            letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-        }
-        
-        .live-frame-wrapper { 
-            width: 100%; 
-            height: 400px; 
-            border-radius: 15px; 
-            overflow: hidden; 
-            border: 2px solid rgba(255,255,255,0.1);
-            margin-bottom: 25px; 
-            background: #000;
-        }
-        
-        .live-frame-wrapper iframe { 
-            width: 100%; 
-            height: 100%; 
-            border: none; 
-        }
-
-        .bet-button { 
-            display: block;
-            width: 100%; 
-            background: linear-gradient(90deg, #ff4757, #ff6b81);
-            color: white; 
-            border: none; 
-            padding: 18px; 
-            border-radius: 15px; 
-            cursor: pointer; 
-            font-weight: bold; 
-            font-size: 1.2rem;
-            text-align: center;
-            text-decoration: none;
-            transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(255,71,87,0.4);
-            /* Button အပြင်မထွက်အောင် */
-            box-sizing: border-box;
-        }
-        
-        .bet-button:hover { 
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255,71,87,0.6);
-            background: #ff2e43;
-        }
+        .bet-form { display: flex; flex-direction: column; gap: 12px; }
+        input { padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: white; outline: none; }
+        .bet-button { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border: none; padding: 16px; border-radius: 12px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .bet-button:disabled { background: #475569 !important; cursor: not-allowed; }
+        #step2 { display: none; margin-top: 15px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>✨ 2D Live Result</h1>
-    
     <div class="live-frame-wrapper">
-        <iframe src="https://myanmar-2d.vercel.app/" title="2D Live"></iframe>
+        <iframe src="https://myanmar-2d.vercel.app/" scrolling="no"></iframe>
     </div>
 
-    <a href="https://t.me/Minmin2981" class="bet-button">ထိုးရန်</a>
+    <div class="info-frame">
+        <h4 style="margin: 0 0 10px 0; color: #fbbf24;">⚠️ သတိပေးချက်နှင့် စည်းကမ်းများ</h4>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+            <li>ဂဏန်းများကို 01 မှ 99 အတွင်းသာ ရွေးချယ်ပါ။</li>
+            <li>ငွေလွှဲပြီးပါက ပြေစာနောက်ဆုံး ၅ လုံးကို မပျက်မကွက်ဖြည့်ပါ။</li>
+            <li>အချိန်သတ်မှတ်ချက်အတွင်းသာ ထိုးနိုင်ပါသည်။</li>
+            <li>အနိုင်အရှုံးနှင့် ပတ်သက်၍ အတိအကျ စစ်ဆေးပေးပါမည်။</li>
+            <li>တစ်ခါထိုးလျှင် ပမာဏအနည်းဆုံး (၅၀၀) ကျပ်မှ စတင်ပါ။</li>
+        </ul>
+    </div>
+
+    <form id="step1Form" class="bet-form">
+        <input type="text" id="name" placeholder="သင့်အမည်" required>
+        <input type="number" id="betNumber" placeholder="ဂဏန်း (01 - 99)" min="1" max="99" required>
+        <input type="number" id="betAmount" placeholder="ငွေပမာဏ" required>
+        <input type="text" id="accName" placeholder="ငွေလွှဲ Kpay အကောင့်နာမည်" required>
+        <button type="submit" id="submitBtn1" class="bet-button">ဆက်လုပ်ရန်</button>
+    </form>
+
+    <div id="step2">
+        <div style="background: rgba(234, 179, 8, 0.1); padding: 15px; border-radius: 15px; margin-bottom: 15px; border-left: 4px solid #eab308;">
+            <p style="margin:0; font-size: 14px;">👉 ငွေလွှဲရမည့် အကောင့်: <b>0912345678</b> (KPay)</p>
+        </div>
+        <input type="text" id="receipt" placeholder="ပြေစာနောက်ဆုံး ၅ လုံး" maxlength="5" style="width: 100%; box-sizing: border-box; margin-bottom: 10px;">
+        <button id="finalSubmit" class="bet-button" style="width: 100%;">အတည်ပြုမည်</button>
+    </div>
 </div>
 
+<script>
+    function checkTime() {
+        const now = new Date();
+        const currentTime = now.getHours() * 60 + now.getMinutes();
+        const slots = [[8*60+30, 9*60], [10*60, 11*60+30], [12*60+20, 13*60+40], [14*60+30, 16*60]];
+        const isAllowed = slots.some(s => currentTime >= s[0] && currentTime <= s[1]);
+        
+        const btn1 = document.getElementById('submitBtn1');
+        if (!isAllowed) {
+            btn1.disabled = true;
+            btn1.innerText = "လက်ရှိအချိန်တွင် အထိုးမရပါ";
+        } else {
+            btn1.disabled = false;
+            btn1.innerText = "ဆက်လုပ်ရန်";
+        }
+    }
+
+    checkTime();
+    setInterval(checkTime, 5000);
+
+    let userData = {};
+    document.getElementById('step1Form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        let val = parseInt(document.getElementById('betNumber').value);
+        if (val < 1 || val > 99) {
+            alert("ဂဏန်းကို 01 မှ 99 အတွင်းသာ ရိုက်ပေးပါ။");
+            return;
+        }
+        let formattedNumber = val < 10 ? "0" + val : val.toString();
+        userData = {
+            name: document.getElementById('name').value,
+            betNumber: formattedNumber,
+            betAmount: document.getElementById('betAmount').value,
+            accName: document.getElementById('accName').value
+        };
+        document.getElementById('step1Form').style.display = 'none';
+        document.getElementById('step2').style.display = 'block';
+    });
+
+    document.getElementById('finalSubmit').addEventListener('click', function() {
+        const receipt = document.getElementById('receipt').value;
+        if(receipt.length < 5) return alert("ပြေစာနံပါတ် ၅ လုံးဖြည့်ပါ။");
+        this.innerText = "ပို့နေသည်...";
+        this.disabled = true;
+
+        const token = "8414644678:AAF0b-BLHsO7pXEL4p274BrpaUUYCGvBj_E";
+        const chatId = "8710007891";
+        const message = `🎲 *အသစ်ထိုးထားသည်*\n👤 အမည်: ${userData.name}\n🔢 ဂဏန်း: ${userData.betNumber}\n💰 ပမာဏ: ${userData.betAmount}\n🏦 Kpay နာမည်: ${userData.accName}\n🧾 ပြေစာ: ${receipt}`;
+
+        fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`)
+        .then(() => {
+            alert("အောင်မြင်စွာ ပေးပို့ပြီးပါပြီ။");
+            location.reload();
+        });
+    });
+</script>
 </body>
 </html>
