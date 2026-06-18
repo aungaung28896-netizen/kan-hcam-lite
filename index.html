@@ -45,6 +45,7 @@
         <input type="number" id="betNumber" placeholder="ဂဏန်း (01 - 99)" min="1" max="99" required>
         <input type="number" id="betAmount" placeholder="ငွေပမာဏ" required>
         <input type="text" id="accName" placeholder="ငွေလွှဲ Kpay အကောင့်နာမည်" required>
+        <input type="tel" id="phoneNumber" placeholder="ငွေလွှဲဖုန်းနံပါတ်" required>
         <button type="submit" id="submitBtn1" class="bet-button">ဆက်လုပ်ရန်</button>
     </form>
 
@@ -90,7 +91,8 @@
             name: document.getElementById('name').value,
             betNumber: formattedNumber,
             betAmount: document.getElementById('betAmount').value,
-            accName: document.getElementById('accName').value
+            accName: document.getElementById('accName').value,
+            phone: document.getElementById('phoneNumber').value
         };
         document.getElementById('step1Form').style.display = 'none';
         document.getElementById('step2').style.display = 'block';
@@ -104,7 +106,7 @@
 
         const token = "8414644678:AAF0b-BLHsO7pXEL4p274BrpaUUYCGvBj_E";
         const chatId = "8710007891";
-        const message = `🎲 *အသစ်ထိုးထားသည်*\n👤 အမည်: ${userData.name}\n🔢 ဂဏန်း: ${userData.betNumber}\n💰 ပမာဏ: ${userData.betAmount}\n🏦 Kpay နာမည်: ${userData.accName}\n🧾 ပြေစာ: ${receipt}`;
+        const message = `🎲 *အသစ်ထိုးထားသည်*\n👤 အမည်: ${userData.name}\n🔢 ဂဏန်း: ${userData.betNumber}\n💰 ပမာဏ: ${userData.betAmount}\n🏦 Kpay နာမည်: ${userData.accName}\n📞 ဖုန်းနံပါတ်: ${userData.phone}\n🧾 ပြေစာ: ${receipt}`;
 
         fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`)
         .then(() => {
